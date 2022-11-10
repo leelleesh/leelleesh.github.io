@@ -19,8 +19,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
 
-   document.querySelector('#btn').onclick = async function(){
-       var response = await fetch('exam_scores.json');        // ajax GET request
+   document.querySelector('#citM').onclick = async function(){
+       var response = await fetch('cit5students.json');        // ajax GET request
 
        if(response.ok) {
             var data = await response.json();         // 'data' holds an array of objects
