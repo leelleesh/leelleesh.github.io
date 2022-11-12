@@ -12,8 +12,8 @@
          <h2>Select a Major</h2>
       
          <div style='padding: 5px;'>    
-            <button type='button' class="btn btn-primary" onClick="getData('CIT')">Cit Majors</button> 
-            <button type='button' class="btn btn-primary" onClick="getData('BUS')">/Business Majors</button>
+            <button type='button' id='CIT' onClick="getData('CIT')">Cit Majors</button> 
+            <button type='button' id='BUS' onClick="getData('BUS')">/Business Majors</button>
          </div>
       
   
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
             var data = await response.json();         // 'data' holds an array of objects
 
             var tableContents = "<table cellspacing='5'>"     // generate table
-            tableContents += "<tr><td>Name</td><td>Midterm</td><td>Final</td></tr>";
+            tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td></tr>";
 
             for(i = 0; i < data.length; i++) {
                 tableContents += `<tr><td> ${data[i].name} </td>
