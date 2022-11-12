@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
 
    document.querySelector('#CIT').onclick = async function(){
        var response = await fetch('cit5students.json');        // ajax GET request
-       document.querySelector('#BUS').onclick = async function(){
-       var response = await fetch('cit5students.json');        // ajax GET request
+       
 
 
        if(response.ok) {
