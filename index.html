@@ -5,60 +5,53 @@
 </head>
 <body>
 
- <style> .btn{margin: 5px} </style>
-</head>
-<body>
+<style type="text/css">
+    H1 {color: white; font-style: bold; background: lightpink;}
+</style><h1><center><span id='total'></span> ♡ Select a Major ♡</h1></style>
   <div class="container">
-      <h2>Select a Major</h2>
-      <div style='padding: 5px;'> 
-         <button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT</button> 
-         <button type='button' class="btn btn-primary" onClick="getData('BUS')">Business</button> 
-      </div>
+         <h2>Select a Major</h2>
+      
+         <div style='padding: 5px;'>    
+            <button type='button' class="btn btn-primary" onClick="getData('cit')">Cit Majors</button> 
+            <button type='button' class="btn btn-primary" onClick="getData('bus')">/Business Majors</button>
+         </div>
+      
   
-  <h3>Dataset is filtered by major</h3>
+         <h3>Filter dataset by major</h3>
+         <div id="majorTable"></div>
 
-  <div id="majorTable"></div>
-  </div>   <!-- end class='container'   -->
-  </body>
+</body>
+<script>
 
- <!-- Handlebars template -->
-  <script type="text/x-handlebars-template" id="majorTemplate">
-      <table class="table table-striped">
-          <tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
-             {{#each rows}}
-                <tr>
-                     <td>{{name}}</td><td>{{major}}</td><td>{{midterm}}</td><td>{{final}}</td>
-                </tr>
-             {{/each}}
-      </table>
-  </script>
+document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
 
-  <!-- application ajax code -->
-  <script>
-    async function getData(selectM) {
-        var response = await fetch('cit5students.json');   // this is an ajax GET request
+   document.querySelector('#CIT').onclick = async function(){
+       var response = await fetch('cit5students.json');        // ajax GET request
 
-        if(response.ok) {
-            var data = await response.json();
-                
-           var templateText = document.getElementById('majorTemplate').innerHTML;
-           var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: name_major })      // apply data to template
-           document.getElementById('majorTable').innerHTML = compiledHtml; 
+       if(response.ok) {
+            var data = await response.json();         // 'data' holds an array of objects
+
+            var tableContents = "<table cellspacing='5'>"     // generate table
+            tableContents += "<tr><td>Name</td><td>Midterm</td><td>Final</td></tr>";
+
+            for(i = 0; i < data.length; i++) {
+                tableContents += `<tr><td> ${data[i].name} </td>
+                       <td> ${data[i].midterm} </td>    // make rows using template literals
+                       <td> ${data[i].final} </td></tr>`;
+            }
+
+            tableContents += "</table>";
+            document.querySelector('#result').innerHTML = tableContents;
        }
        else {
-           document.querySelector('#majorTable').innerHTML = "There was an error, or menu items not found";
-       }	
- 
-  }
-  
-major_items = ['cit5students.json']    // new array to hold filtered data
+            document.querySelector('#result').innerHTML = "Data not found";
+       }
+   };
 
-for(i=0, i < data.length; i++) {
-    if(data[i].major == selected_major) {
-        major_items.push(data[i].major);
-    }
-} 
+});
+        
 
-    </script>
+</script>
+
+
 </html>
