@@ -12,8 +12,8 @@
          <h2>Select a Major</h2>
       
          <div style='padding: 5px;'>    
-            <button type='button' id='CIT' onClick="getData('CIT')">Cit Majors</button> 
-            <button type='button' id='BUS' onClick="getData('BUS')">/Business Majors</button>
+            <button type='button' class="btn btn-primary" onClick="getData('cit')">Cit Majors</button> 
+            <button type='button' class="btn btn-primary" onClick="getData('bus')">/Business Majors</button>
          </div>
       
   
@@ -27,19 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
 
    document.querySelector('#CIT').onclick = async function(){
        var response = await fetch('cit5students.json');        // ajax GET request
-   document.querySelector('#BUS').onclick = async function(){
-       var response = await fetch('cit5students.json');    
-
 
        if(response.ok) {
             var data = await response.json();         // 'data' holds an array of objects
 
             var tableContents = "<table cellspacing='5'>"     // generate table
-            tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td></tr>";
+            tableContents += "<tr><td>Name</td><td>Midterm</td><td>Final</td></tr>";
 
             for(i = 0; i < data.length; i++) {
                 tableContents += `<tr><td> ${data[i].name} </td>
-                		<td> ${data[i].major} </td>
                        <td> ${data[i].midterm} </td>    // make rows using template literals
                        <td> ${data[i].final} </td></tr>`;
             }
@@ -59,3 +55,4 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
 
 
 </html>
+
