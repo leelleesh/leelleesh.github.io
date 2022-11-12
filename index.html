@@ -4,13 +4,12 @@
 <title>Get Student Scores</title>
 </head>
 <body>
-
-<style type="text/css">
-    H1 {color: white; font-style: bold; background: lightpink;}
-</style><h1><center><span id='total'></span> ♡ Select a Major ♡</h1></style>
-<form>
-     <center><button type="button" id="citM">CIT</button>   <button type="button" id="bizM">BIZ</button>
-   </form>
+<div class="container">
+      <h2>Select a Major</h2>
+      <div style='color: lightPink;'> 
+         <button type='button' class="btn btn-primary" onClick="getData('majorCIT')">CIT</button> 
+         <button type='button' class="btn btn-primary" onClick="getData('majorBUS')">BUS</button> 
+      </div>
    
 <div id="result"></div>
 
@@ -22,7 +21,7 @@
         if(response.ok) {
             var data = await response.json();
 
-           student_items = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
+           student_items [] = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
                 
            var templateText = document.getElementById('menuTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
