@@ -15,41 +15,25 @@
 <div id="result"></div>
 
 </body>
-<script>
+ <script>
+    async function getData(selected_major) {
+        var response = await fetch('cit5students.json');   // this is an ajax GET request
 
-document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
+        if(response.ok) {
+            var data = await response.json();
 
-   document.querySelector('#btn').onclick = async function(){
-       var response = await fetch('cit5students.json');        // ajax GET request
-	   
-       if(response.ok) {
-            var data = await response.json();         // 'data' holds an array of objects
-
-
-
-
-
-            var tableContents = "<table cellspacing='5'>"     // generate table
-            tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td></tr>";
-
-            for(i = 0; i < data.length; i++) {
-                tableContents += `<tr><td> ${data[i].name} </td>
-                       <td> ${data[i].major} </td>
-                       <td> ${data[i].midterm} </td>  
-                       <td> ${data[i].final} </td></tr>`;
-            }
-
-            tableContents += "</table>";
-            document.querySelector('#result').innerHTML = tableContents;
+            major_items = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
+                
+           var templateText = document.getElementById('menuTemplate').innerHTML;
+           var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
+           compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
+           document.getElementById('result').innerHTML = compiledHtml; 
        }
        else {
-            document.querySelector('#result').innerHTML = "Data not found";
-       }
-   };
-
-});
-        
-
+           document.querySelector('result').innerHTML = "There was an error, or menu items not found";
+       }	
+ 
+  }
 </script>
 
 
