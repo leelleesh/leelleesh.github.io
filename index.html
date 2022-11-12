@@ -5,55 +5,54 @@
 </head>
 <body>
 
-<style type="text/css">
-    H1 {color: white; font-style: bold; background: lightpink;}
-</style><h1><center><span id='total'></span> ♡ Select a Major ♡</h1></style>
+ <style> .btn{margin: 5px} </style>
+</head>
+<body>
   <div class="container">
-         <h2>Select a Major</h2>
-      
-         <center><div style='padding: 5px;'>    
-            <button type='button' class="btn btn-primary" onClick="getData('cit')">Cit Majors</button> 
-            <button type='button' class="btn btn-primary" onClick="getData('bus')">/Business Majors</button>
-         </div>
-      
+      <h2>Select a Major</h2>
+      <div style='padding: 5px;'> 
+         <button type='button' class="btn btn-primary" onClick="getData('citM')">CIT</button> 
+         <button type='button' class="btn btn-primary" onClick="getData('bizM')">Business</button> 
+      </div>
   
-         <h3>Filter dataset by major</h3>
-         <div id="majorTable"></div>
+  <h3>Dataset is filtered by major</h3>
 
-</body>
-<script>
+  <div id="majorTable"></div>
+  </div>   <!-- end class='container'   -->
+  </body>
 
-document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
+ <!-- Handlebars template -->
+  <script type="text/x-handlebars-template" id="majorTemplate">
+      <table class="table table-striped">
+          <tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
+             {{#each rows}}
+                <tr>
+                     <td>{{name}}</td><td>{{major}}</td><td>{{midterm}}</td><td>{{final}}</td>
+                </tr>
+             {{/each}}
+      </table>
+  </script>
 
-   document.querySelector('#CIT').onclick = async function(){
-       var response = await fetch('cit5students.json');        // ajax GET request
+  <!-- application ajax code -->
+  <script>
+    async function getData(selected_major) {
+        var response = await fetch('cit5students.json');   // this is an ajax GET request
 
-       if(response.ok) {
-            var data = await response.json();         // 'data' holds an array of objects
+        if(response.ok) {
+            var data = await response.json();
 
-            var tableContents = "<table cellspacing='5'>"     // generate table
-            tableContents += "<tr><td>Name</td><td>Midterm</td><td>Final</td></tr>";
-
-            for(i = 0; i < data.length; i++) {
-                tableContents += `<tr><td> ${data[i].name} </td>
-                       <td> ${data[i].midterm} </td>    // make rows using template literals
-                       <td> ${data[i].final} </td></tr>`;
-            }
-
-            tableContents += "</table>";
-            document.querySelector('#result').innerHTML = tableContents;
+            selectM = data.filter( (major) => name.major == selectM );    // filter data array for selected meal items 
+                
+           var templateText = document.getElementById('majorTemplate').innerHTML;
+           var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
+           compiledHtml = compiledTemplateText({ rows: name.major })      // apply data to template
+           document.getElementById('majorTable').innerHTML = compiledHtml; 
        }
        else {
-            document.querySelector('#result').innerHTML = "Data not found";
-       }
-     
+           document.querySelector('#majorTable').innerHTML = "There was an error, or menu items not found";
+       }	
  
-   };
+  }
 
-});
-        
-
-</script>
-
-
+    </script>
 </html>
