@@ -25,11 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
        if(response.ok) {
             var data = await response.json();         // 'data' holds an array of objects
 
+	document.querySelector('#bizM').onclick = async function(){
+       var response = await fetch('cit5students.json');        // ajax GET request
+
+       if(response.ok) {
+            var data = await response.json();
+
+
+
+
             var tableContents = "<table cellspacing='5'>"     // generate table
             tableContents += "<tr><td>Name</td><td>Midterm</td><td>Final</td></tr>";
 
             for(i = 0; i < data.length; i++) {
                 tableContents += `<tr><td> ${data[i].name} </td>
+                       <td> ${data[i].major} </td>
                        <td> ${data[i].midterm} </td>  
                        <td> ${data[i].final} </td></tr>`;
             }
@@ -49,3 +59,4 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
 
 
 </html>
+
