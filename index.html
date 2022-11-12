@@ -18,16 +18,25 @@
  <script>
    document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
 
-   document.querySelector('#CIT', '#BUS').onclick = async function(){
-       var response = await fetch('cit5students.json');   
+   document.querySelector('#CIT').onclick = async function(){
+       var response = await fetch('cit5students.json');        // ajax GET request
 
-        if(response.ok) {
-            var data = await response.json();
-            
-           var templateText = document.getElementById('result').innerHTML;
-           var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
-           document.getElementById('result').innerHTML = compiledHtml; 
+       if(response.ok) {
+            var data = await response.json();         // 'data' holds an array of objects
+
+            var tableContents = "<table cellspacing='5'>"     // generate table
+            tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td></tr>";
+
+            for(i = 0; i < data.length; i++) {
+                tableContents += `<tr><td> ${data[i].name} </td>
+                       <td> ${data[i].major} </td>
+                       <td> ${data[i].midterm} </td>  
+                       <td> ${data[i].final} </td></tr>`;
+            }
+
+            tableContents += "</table>";
+            document.querySelector('#result').innerHTML = tableContents;
+ 
        }
        else {
            document.querySelector('result').innerHTML = "There was an error, or menu items not found";
