@@ -53,7 +53,7 @@
         if(response.ok) {
             var data = await response.json();
 
-            major_items = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
+            major_name = data.filter( (name) => name.major == selected_major );    // filter data array for selected meal items 
                 
            var templateText = document.getElementById('tableTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
