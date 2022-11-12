@@ -9,15 +9,18 @@
     H1 {color: white; font-style: bold; background: lightpink;}
 </style><h1><center><span id='total'></span> ♡ Select a Major ♡</h1></style>
 <form>
-     <center><button type="button" onClick="getData('CIT')">CIT Majors</button>   <button type="button" onClick="getData('BUS')">BIZ Majors</button>
-   </form><br>
+     <center><button type="button" id="citM">CIT</button>   <button type="button" id="bizM">BIZ</button>
+   </form>
    
 <div id="result"></div>
 
 </body>
  <script>
-    async function getData(selected_major) {
-        var response = await fetch('cit5students.json');   // this is an ajax GET request
+   document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
+
+   document.querySelector('#citM').onclick = async function()
+   document.querySelector('#bizM').onclick = async function(){
+       var response = await fetch('cit5students.json');   
 
         if(response.ok) {
             var data = await response.json();
