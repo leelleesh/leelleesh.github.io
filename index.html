@@ -9,7 +9,7 @@
     H1 {color: white; font-style: bold; background: lightpink;}
 </style><h1><center><span id='total'></span> ♡ Select a Major ♡</h1></style>
 <form>
-     <center><button type="button" id="citM">CIT</button>   <button type="button" id="bizM">BIZ</button>
+     <center><button type="button" id="CIT">CIT</button>   <button type="button" id="BUS">BIZ</button>
    </form>
    
 <div id="result"></div>
@@ -18,15 +18,12 @@
  <script>
    document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
 
-   document.querySelector('#citM').onclick = async function()
-   document.querySelector('#bizM').onclick = async function(){
+   document.querySelector('#CIT', '#BUS').onclick = async function(){
        var response = await fetch('cit5students.json');   
 
         if(response.ok) {
             var data = await response.json();
-
-            major_items = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
-                
+            
            var templateText = document.getElementById('menuTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
            compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
