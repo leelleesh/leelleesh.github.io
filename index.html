@@ -1,70 +1,56 @@
-<!DOCTYPE html><html>
-<head> 
-
-
-
-
-<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Majors</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-
-      <!-- bootstrap, need to use https for these links -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-    <style> .btn{margin: 5px} </style>
+<!DOCTYPE html/CSS>
+<html>
+<head>
+<title>Get Student Scores</title>
 </head>
 <body>
-  <div class="container">
-      <h2>Select a Major</h2>
-      <div style='padding: 5px;'> 
-         <button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT</button> 
-         
-         <button type='button' class="btn btn-primary" onClick="getData('BUS')">BIZ</button> 
-      </div>
-  
-  <h3>dataset filtered by major</h3>
 
-  <div id="majorTable"></div>
+<style type="text/css">
+    H1 {color: white; font-style: bold; background: lightpink;}
+</style><h1><center><span id='total'></span> ♡ Select a Major ♡</h1></style>
+<form>
+     <center><button type="button" id="citM">CIT Majors</button>   <button type="button" id="bizM">BIZ Majors</button>
+   </form><br>
+   
+<div id="result"></div>
 
-     
- <!-- end class='container'   -->
-  </body>
+</body>
+<script>
 
- <!-- Handlebars template -->
-  <script type="text/x-handlebars-template" id="tableTemplate">
-	<table cellspacing='12'>
-		<tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
-		{{#each rows}}
-			<tr>
-				<td>{{name}}</td><td>{{Major}}</td><td>{{Midterm}}</d><td>{{Final}}</td>
-			</tr>
-		{{/each}}
-	</table>
-	</script>
+document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
 
-  <!-- application ajax code -->
-  <script>
-    async function getData(selected_major) {
-        var response = await fetch('cit5students.json');   // this is an ajax GET request
+   document.querySelector('#citM', '#bizM').onclick = async function(){
+       var response = await fetch('cit5students.json');        // ajax GET request
+	   
+       if(response.ok) {
+            var data = await response.json();         // 'data' holds an array of objects
 
-        if(response.ok) {
-            var data = await response.json();
 
-         major_items = data.filter( (major) => item.major == selected_major );    // filter data array for selected meal items 
-                
-           var templateText = document.getElementById('tableTemplate').innerHTML;
-           var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
-           document.getElementById('majorTable').innerHTML = compiledHtml; 
-    }
+
+
+
+            var tableContents = "<table cellspacing='5'>"     // generate table
+            tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td></tr>";
+
+            for(i = 0; i < data.length; i++) {
+                tableContents += `<tr><td> ${data[i].name} </td>
+                       <td> ${data[i].major} </td>
+                       <td> ${data[i].midterm} </td>  
+                       <td> ${data[i].final} </td></tr>`;
+            }
+
+            tableContents += "</table>";
+            document.querySelector('#result').innerHTML = tableContents;
+       }
        else {
-           document.querySelector('#majorTable').innerHTML = "There was an error, or menu items not found";
-       }	
- 
-  }
-</script>
-</html>
+            document.querySelector('#result').innerHTML = "Data not found";
+       }
+   };
 
+});
+        
+
+</script>
+
+
+</html>
