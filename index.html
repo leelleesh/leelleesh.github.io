@@ -19,7 +19,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
 
-   document.querySelector('CIT').onclick = async function(){
+   document.querySelector('#btn').onclick = async function(){
        var response = await fetch('cit5students.json');        // ajax GET request
 	   
        if(response.ok) {
