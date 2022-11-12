@@ -24,7 +24,7 @@
         if(response.ok) {
             var data = await response.json();
             
-           var templateText = document.getElementById('menuTemplate').innerHTML;
+           var templateText = document.getElementById('result').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
            compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
            document.getElementById('result').innerHTML = compiledHtml; 
