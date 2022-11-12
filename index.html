@@ -53,13 +53,12 @@
         if(response.ok) {
             var data = await response.json();
 
-            major_name = data.filter( (name) => name.major == selected_major );    // filter data array for selected meal items 
-                
-           var templateText = document.getElementById('tableTemplate').innerHTML;
-           var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
-           document.getElementById('majorTable').innerHTML = compiledHtml; 
-       }
+           major_items = []    // new array to hold filtered data
+
+for(i=0, i < data.length; i++) {
+    if(data[i].major == selected_major) {
+        major_items.push(data[i].major);
+    }
        else {
            document.querySelector('#majorTable').innerHTML = "There was an error, or menu items not found";
        }	
