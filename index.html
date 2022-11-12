@@ -45,7 +45,7 @@
                 
            var templateText = document.getElementById('majorTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: name.major })      // apply data to template
+           compiledHtml = compiledTemplateText({ rows: name_major })      // apply data to template
            document.getElementById('majorTable').innerHTML = compiledHtml; 
        }
        else {
