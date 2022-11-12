@@ -8,24 +8,18 @@
 <style type="text/css">
     H1 {color: white; font-style: bold; background: lightpink;}
 </style><h1><center><span id='total'></span> ♡ Select a Major ♡</h1></style>
-  <div class="container">
-         <h2>Select a Major</h2>
-      
-         <div style='padding: 5px;'>    
-            <button type='button' class="btn btn-primary" onClick="getData('cit')">Cit Majors</button> 
-            <button type='button' class="btn btn-primary" onClick="getData('bus')">/Business Majors</button>
-         </div>
-      
-  
-         <h3>Filter dataset by major</h3>
-         <div id="majorTable"></div>
+<form>
+     <center><button type="button" id="citM">CIT Majors</button>   <button type="button" id="bizM">BIZ Majors</button>
+   </form><br>
+   
+<div id="result"></div>
 
 </body>
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {     // after page loads, more or less
 
-   document.querySelector('#CIT').onclick = async function(){
+   document.querySelector('#citM').onclick = async function(){
        var response = await fetch('cit5students.json');        // ajax GET request
 
        if(response.ok) {
@@ -36,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
 
             for(i = 0; i < data.length; i++) {
                 tableContents += `<tr><td> ${data[i].name} </td>
-                       <td> ${data[i].midterm} </td>    // make rows using template literals
+                       <td> ${data[i].midterm} </td>  
                        <td> ${data[i].final} </td></tr>`;
             }
 
@@ -55,4 +49,3 @@ document.addEventListener('DOMContentLoaded', function() {     // after page loa
 
 
 </html>
-
