@@ -41,7 +41,7 @@
         if(response.ok) {
             var data = await response.json();
 
-          major_items = []    // new array to hold filtered data
+       var major_items = []    // new array to hold filtered data
 
 for(i=0, i < data.length; i++) {
     if(data[i].major == selected_major) {
