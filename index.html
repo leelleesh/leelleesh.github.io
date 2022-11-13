@@ -13,7 +13,7 @@
 <body>
 <body>
   <div class="container">
-      <h2>♡ Select a Major ♡</h2>
+      <h3>♡ Select a Major ♡</h3>
       <div style='padding: 5px;'>
      <center><button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT</button>
          <button type='button' class="btn btn-primary" onClick="getData('BUS')">BIZ</button> 
@@ -41,7 +41,7 @@
         if(response.ok) {
             var data = await response.json();
 
-           major_items = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
+           major_items = data.filter( (item) => item.major => item.name == selected_major );    // filter data array for selected meal items 
                 
            var templateText = document.getElementById('tableTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
