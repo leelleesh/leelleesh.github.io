@@ -40,12 +40,6 @@
 
         if(response.ok) {
             var data = await response.json();
-
-       var major_items = []    // new array to hold filtered data
-
-for(i=0, i < data.length; i++) {
-    if(data[i].major == selected_major) {
-        major_items.push(data[i].major);
 	    
            var templateText = document.getElementById('tableTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
