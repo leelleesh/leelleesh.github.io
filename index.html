@@ -24,7 +24,7 @@
         if(response.ok) {
             var data = await response.json();
 
-           student_items = data.filter( (name) => name.major == selected_major );    // filter data array for selected meal items 
+           student_items = data.filter( (major) => data.major == selected_major );    // filter data array for selected meal items 
                 
            var templateText = document.getElementById('menuTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
