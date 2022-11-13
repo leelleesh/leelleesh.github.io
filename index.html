@@ -39,7 +39,7 @@
                 
            var templateText = document.getElementById('tableTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: student_items })      // apply data to template
+           compiledHtml = compiledTemplateText({ rows: cit_students })      // apply data to template
            document.getElementById('result').innerHTML = compiledHtml; 
        }
        else {
