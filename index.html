@@ -35,11 +35,11 @@
         if(response.ok) {
             var data = await response.json();
 
-           cit_students = data.filter( (major) => item.major == selected_major );    // filter data array for selected meal items 
+           major_items = data.filter( (major) => item.major == selected_major );    // filter data array for selected meal items 
                 
            var templateText = document.getElementById('tableTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: cit_students })      // apply data to template
+           compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
            document.getElementById('result').innerHTML = compiledHtml; 
        }
        else {
