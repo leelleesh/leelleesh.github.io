@@ -41,8 +41,12 @@
         if(response.ok) {
             var data = await response.json();
 
-           major_items = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
-                
+          major_items = []    // new array to hold filtered data
+
+for(i=0, i < data.length; i++) {
+    if(data[i].major == selected_major) {
+        major_items.push(data[i].major);
+	    
            var templateText = document.getElementById('tableTemplate').innerHTML;
            var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
            compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
