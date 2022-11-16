@@ -49,3 +49,32 @@
   
 </div>   <!-- end gpaApp -->
 </div>   <!-- end class= 'container' -->
+  
+<script>
+       let app = Vue.createApp({
+            data() {     // returns an object of data
+                return {
+                    tickets: [],           // array to hold student data
+                }
+            },
+            created() {      // section executes as page loads
+                this.getData()  // load json data as page loads
+            },
+            methods: {    // ajax request
+                async getData() {
+                    const response = await fetch('tickets1.json')
+                    this.tickets = await response.json()
+                    //tickets = data.filter( (item) => item.major == majSelect );     
+                },
+              getByActual_speed() {
+                this.showTable = true
+                this.tickets = this.results.filter( (ticket) => ticket.actual_speed == this.actual_speed );
+            }
+            },
+          })
+      
+      app.mount('#ticketApp')   //in which div to mount the vue app
+		  
+
+</script>
+</body></html>
