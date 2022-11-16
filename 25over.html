@@ -26,8 +26,26 @@
 
 </nav>    <!-- end nav-bar -->
     
-    
-async getData() {
-    const response = await fetch('tickets1.json')
-    this.results = await response.json()
-}
+<div id="ticketApp">
+
+     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+          
+          <table class="table table-bordered table-striped">
+              <tr>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
+              </tr>
+              <tr v-for = "ticket in tickets">
+                  <td>{{ticket.tid}}</td>
+                  <td>{{ticket.stop_time}}</td>
+                  <td>{{ticket.posted_speed}}</td>
+                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+                  <td>{{ticket.violator_sex}}</td>
+              </tr>
+         </table>
+  
+</div>   <!-- end gpaApp -->
+</div>   <!-- end class= 'container' -->
