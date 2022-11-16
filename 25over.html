@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>speeding tickets 25mph & over</title>
+<title>speeding tickets 25mph(or more) over</title>
   
 <script src="https://unpkg.com/vue@next"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -25,3 +25,9 @@
     </div>
 
 </nav>    <!-- end nav-bar -->
+    
+    
+async getData() {
+    const response = await fetch('tickets1.json')
+    this.results = await response.json()
+}
