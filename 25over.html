@@ -66,9 +66,9 @@
                     this.tickets = await response.json()
                     //tickets = data.filter( (item) => item.major == majSelect );     
                 },
-              getByActual_speed() {
+              getByMPHOver() {
                 this.showTable = true
-                this.tickets = this.results.filter( (ticket) => ticket.actual_speed == this.actual_speed );
+                this.ticket = this.results.filter( (item) => item.MPHOver < "25" == this.MPHOver );
             }
             },
           })
