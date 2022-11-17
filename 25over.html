@@ -16,42 +16,37 @@
 
 </head>
 <body>
+  
+  <div class="container" id='main'>
+  <h2>Speeders (25mph and over)</h2>
+       <div style='padding: 5px;'> 
+  <select  v-on:change="getSpeeders()" v-model='tickets'>
+  <option value='mphOver'>25mph and over</option>
+  <option value='all'>All tickets</option>
+  </select> Select an Option
+  </div>
+  
+  
+  <div v-show="showTable">
+    <h3>Tickets: {{tickets}}</h3>
+    <table class='table'>
+    <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th><th>Mph Over</th><th>Violator Sex</th></tr>
+     <tr v-for="dish in menu_items"> 
+    <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td> {{ticket.posted_speed}}</td><td> {{ticket.actual_speed - ticket.posted_speed}}</td><td>{{ticket.violator_sex}}</td>
+  </tr>
+  </table>
+  
+  
+  </div>
+  
+ 
+  
+  </div>   <!-- end class='container'   -->
+  
+  <script src = 'app.js'></script>   <!-- vue.js application code -->
+      
 
-<div class="container">
-<nav class="navbar navbar-inverse">
-
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Our Website</a>
-    </div>
-    <div>
-       <ul class="nav navbar-nav">
-           <li><a href="index.html">All Tickets</a></li>
-           <li class="active"><a href="25over.html">25mph(or more) over</a></li>
-       </ul>
-    </div>
-
-</nav>    <!-- end nav-bar -->
-
-<div id="ticketApp">
-
-     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
-          
-          <table class="table table-bordered table-striped">
-              <tr>
-                  <th>Ticket ID</th>
-                  <th>Time</th>
-                  <th>Posted Speed</th>
-                  <th>Mph Over</th>
-                  <th>Violator Sex</th>
-              </tr>
-              <tr v-for = "ticket in tickets">
-                  <td>{{ticket.tid}}</td>
-                  <td>{{ticket.stop_time}}</td>
-                  <td>{{ticket.posted_speed}}</td>
-                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
-                  <td>{{ticket.violator_sex}}</td>
-              </tr>
-         </table>
+</body>
   
 </div>   <!-- end gpaApp -->
 </div>   <!-- end class= 'container' -->
@@ -91,4 +86,4 @@ let app = Vue.createApp({
   <script src = 'app.js'></script>   <!-- vue.js application code -->
       
 
-</body></html>
+</html>
