@@ -45,7 +45,7 @@
     <h3>Tickets: {{tickets}}</h3>
     <table class='table'>
     <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th><th>Mph Over</th><th>Violator Sex</th></tr>
-     <tr v-for="MphOver in tickets1_items"> 
+     <tr v-for="actual_speed - posted_speed < '25' in tickets1_items"> 
     <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td> {{ticket.posted_speed}}</td><td> {{ticket.actual_speed - ticket.posted_speed}}</td><td>{{ticket.violator_sex}}</td>
   </tr>
   </table>
@@ -71,7 +71,7 @@ let app = Vue.createApp({
         return {
             MphOver: '',          // value is set by the select list
             results: [],       // all 109 data itmes retrieved from the json file
-            ticket_items: [],    // menu items filtered by meal
+            tickets1_items: [],    // menu items filtered by meal
             time_loaded: '',
             showTable: false
         }
