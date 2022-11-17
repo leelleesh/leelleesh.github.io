@@ -72,10 +72,10 @@ let app = Vue.createApp({
             const response = await fetch('tickets1.json')
             this.results = await response.json()
        },
-       getMenu() {
+       getMPHOver() {
            this.showTable = true
            // filter data form given meal
-           this.ticket_items = this.results.filter((item) => item.MPHOver == this.ticket);
+           this.items = this.results.filter((item) => item.MPHOver == this.ticket);
        }
    },
   
