@@ -69,7 +69,7 @@
 	getMphOver() {
            this.showTable = true
            // filter data form given meal
-           this.tickets_items = this.results.filter((item) => item.('Mph Over') == this.tickets);
+           this.tickets_items = this.results.filter((item) => ((item.actual_speed - item.posted_speed)) == this.tickets);
        }
    },
   
