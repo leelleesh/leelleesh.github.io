@@ -72,7 +72,7 @@ let app = Vue.createApp({
        get() {
            this.showTable = true
            // filter data form given meal
-           this.actual_speed_items = this.results.filter((item) => ((item.actual_speed >= item.posted_speed + 25)) == this.ticket);
+           this.actual_speed_items = this.results.filter((item) >= item.posted_speed == this.ticket);
        }
    },
   
