@@ -31,7 +31,7 @@
 </nav>    <!-- end nav-bar -->
 	
 	
- <div id="ticketApp"><v-on:onload="getByTickets()"
+ <div id="ticketApp">
      <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
           
           <table class="table table-bordered table-striped">
@@ -71,7 +71,7 @@
        getByTickets() {
            this.showTable = true
            // filter data form given meal
-           this.actual_speed_items = this.results.filter((item) >= item.posted_speed == this.ticket);
+           this.tickets_items = this.results.filter((item) >= item.posted_speed == this.ticket);
        }
    },
   
