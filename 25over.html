@@ -49,3 +49,36 @@
 </div>   <!-- end class= 'container' -->
 
 <script>
+let app = Vue.createApp({
+   data() {     // returns an object of data
+        return {
+            tickets1: '',          // value is set by the select list
+            results: [],       // all 109 data itmes retrieved from the json file
+            ticket_items: [],    // menu items filtered by meal
+            time_loaded: '',
+            showTable: false
+        }
+        },
+   created() {      // section executes as page loads
+        var d = new Date()
+        this.time_loaded = d.toLocaleTimeString()
+  
+        this.getData()  // call method to load json data as page loads
+   },
+   methods: {    // an object of functions (methods)
+      async getData() {
+            const response = await fetch('tickets1.json')
+            this.results = await response.json()
+       },
+       getTickets() {
+           this.showTable = true
+           // filter data form given meal
+           this.ticket_items = this.results.filter((item) => item.actual_speed == this.ticket);
+       }
+   },
+  
+})
+app.mount('#ticketApp')   //in which div to mount the vue app
+	
+	<script/>
+      </body></html>
