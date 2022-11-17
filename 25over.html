@@ -45,7 +45,7 @@
     <h3>Tickets: {{tickets}}</h3>
     <table class='table'>
     <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th><th>Mph Over</th><th>Violator Sex</th></tr>
-     <tr v-for="ticket in tickets"> 
+     <tr v-for="actual_speed >= posted_speed in tickets"> 
     <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td> {{ticket.posted_speed}}</td><td> {{ticket.actual_speed - ticket.posted_speed}}</td><td>{{ticket.violator_sex}}</td>
   </tr>
   </table>
