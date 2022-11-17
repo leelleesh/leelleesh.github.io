@@ -42,7 +42,7 @@
                   <th>MPH Over</th>
                   <th>Violator Sex</th>
               </tr>
-              <tr v-for = "speed > 25 in tickets1">
+              <tr v-for = "actual_speed in tickets">
                   <td>{{ticket.tid}}</td>
                   <td>{{ticket.stop_time}}</td>
                   <td>{{ticket.posted_speed}}</td>
@@ -60,7 +60,7 @@ let app = Vue.createApp({
         return {
             MphOver: '',          // value is set by the select list
             results: [],       // all 109 data itmes retrieved from the json file
-            tickets1_items: [],    // menu items filtered by meal
+            tickets_items: [],    // menu items filtered by meal
             time_loaded: '',
             showTable: false
         }
@@ -77,7 +77,7 @@ let app = Vue.createApp({
        getMphOver() {
            this.showTable = true
            // filter data form given meal
-           this.items = this.results.filter((item) => item.actual_speed > item.posted_speed == this.ticket);
+           this.tickets_items = this.results.filter((item) => item.actual_speed >= item.posted_speed + 25 == this.ticket);
        }
    },
   
