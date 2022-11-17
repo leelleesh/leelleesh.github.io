@@ -52,24 +52,24 @@
 </table>
 	 </div>   <!-- end gpaApp -->
 	 </div>   <!-- end class= 'container' -->
-	 
+<button type='button' class="btn btn-primary" onClick="getTickets()">Speeders</button> 
  
 <script>
-let app = Vue.createApp({
+	let app = Vue.createApp({
             data() {     // returns an object of data
                 return {
                     tickets: [],           // array to hold student data
                 }
             },
-   created() {      // section executes as page loads
+   	created() {      // section executes as page loads
         this.getData()  // call method to load json data as page loads
-   },
-   methods: {    // an object of functions (methods)
-      async getData() {
+   	},
+   	methods: {    // an object of functions (methods)
+     	   async getData() {
             const response = await fetch('tickets1.json')
             this.tickets = await response.json()
        },
-       get() {
+       getTickets() {
            this.showTable = true
            // filter data form given meal
            this.actual_speed_items = this.results.filter((item) >= item.posted_speed == this.ticket);
