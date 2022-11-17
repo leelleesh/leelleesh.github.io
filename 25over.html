@@ -85,7 +85,7 @@ let app = Vue.createApp({
        getMPHOver() {
            this.showTable = true
            // filter data form given meal
-           this.items = this.results.filter((item) => item.actual_speed - item.posted_speed == this.ticket);
+           this.items = this.results.filter(((item) => (item.actual_speed - item.posted_speed)) == this.ticket);
        }
    },
   
