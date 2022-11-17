@@ -66,7 +66,7 @@
                     const response = await fetch('tickets1.json')
                     this.tickets = await response.json()    
                 },
-	getByMphOver() {
+	getMphOver() {
            this.showTable = true
            // filter data form given meal
            this.tickets_items = this.results.filter((item) => item.Mph_Over == this.tickets);
