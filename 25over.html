@@ -23,8 +23,8 @@
     </div>
     <div>
        <ul class="nav navbar-nav">
-           <li class="active"><a href="index.html">All Tickets</a></li>
-	       <li><a href="25over.html">25mph or move over</a></li>
+           <li><a href="index.html">All Tickets</a></li>
+	       <li class="active"><a href="25over.html">25mph or move over</a></li>
        </ul>
     </div>
 
@@ -45,7 +45,7 @@
     <h3>Tickets: {{tickets}}</h3>
     <table class='table'>
     <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th><th>Mph Over</th><th>Violator Sex</th></tr>
-     <tr v-for="Mph Over in ticket_items"> 
+     <tr v-for="ID in Mph Over_items"> 
     <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td> {{ticket.posted_speed}}</td><td> {{ticket.actual_speed - ticket.posted_speed}}</td><td>{{ticket.violator_sex}}</td>
   </tr>
   </table>
