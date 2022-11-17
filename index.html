@@ -6,29 +6,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
   
-
 </head>
 <body>
-
 <div class="container">
 <nav class="navbar navbar-inverse">
-
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Our Website</a>
     </div>
     <div>
        <ul class="nav navbar-nav">
            <li class="active"><a href="index.html">All Tickets</a></li>
+           <li><a href="25over.html">25mph or move over</a></li>
            <li><a href="25over.html">25mph(or more) over</a></li>
        </ul>
     </div>
 
 </nav>    <!-- end nav-bar -->
-
 <div id="ticketApp">
-
      <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
           
           <table class="table table-bordered table-striped">
@@ -50,40 +45,26 @@
   
 </div>   <!-- end gpaApp -->
 </div>   <!-- end class= 'container' -->
-
 <script>
-let app = Vue.createApp({
-   data() {     // returns an object of data
-        return {
-            mphOver: '',          // value is set by the select list
-            results: [],       // all 109 data itmes retrieved from the json file
-            ticket_items: [],    // menu items filtered by meal
-            time_loaded: '',
-            showTable: false
-        }
-        },
-   created() {      // section executes as page loads
-        var d = new Date()
-        this.time_loaded = d.toLocaleTimeString()
-  
-        this.getData()  // call method to load json data as page loads
-   },
-   methods: {    // an object of functions (methods)
-      async getData() {
-            const response = await fetch('tickets1.json')
-            this.results = await response.json()
-       },
-       getMPHOver() {
-           this.showTable = true
-           // filter data form given meal
-           this.mphOver_items = this.results.filter(((item) => (item.actual_speed - item.posted_speed)) == this.ticket);
-       }
-   },
-  
-})
-
-  
-  <script src = 'app.js'></script>   <!-- vue.js application code -->
+       let app = Vue.createApp({
+            data() {     // returns an object of data
+                return {
+                    tickets: [],           // array to hold student data
+                }
+            },
+            created() {      // section executes as page loads
+                this.getData()  // load json data as page loads
+            },
+            methods: {    // ajax request
+                async getData() {
+                    const response = await fetch('tickets1.json')
+                    this.tickets = await response.json()
+                    //tickets = data.filter( (item) => item.major == majSelect );     
+                },
+            }
+          })
       
-
+      app.mount('#ticketApp')   //in which div to mount the vue app
+		  
+</script>
 </body></html>
