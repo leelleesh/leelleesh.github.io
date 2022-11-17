@@ -31,7 +31,7 @@
 </nav>    <!-- end nav-bar -->
 	
 	
- <div id="ticketApp">
+ <div id="ticketApp"><v-on:load="getByTickets()"
      <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
           
           <table class="table table-bordered table-striped">
@@ -51,8 +51,7 @@
               </tr>
 </table>
 	 </div>   <!-- end gpaApp -->
-	 </div>   <!-- end class= 'container' -->
-<button type='button' class="btn btn-primary" onClick="getTickets()">Speeders</button> 
+	 </div>   <!-- end class= 'container' --> 
  
 <script>
 	let app = Vue.createApp({
@@ -68,8 +67,8 @@
      	   async getData() {
             const response = await fetch('tickets1.json')
             this.tickets = await response.json()
-       },
-       getTickets() {
+       }, 
+       getByTickets() {
            this.showTable = true
            // filter data form given meal
            this.actual_speed_items = this.results.filter((item) >= item.posted_speed == this.ticket);
