@@ -85,7 +85,7 @@ let app = Vue.createApp({
    methods: {    // an object of functions (methods)
       async getData() {
             const response = await fetch('tickets1.json')
-            this.results = await response.json()
+            this.tickets = await response.json()
        },
        getMphOver() {
            this.showTable = true
