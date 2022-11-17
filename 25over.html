@@ -58,9 +58,9 @@
 let app = Vue.createApp({
    data() {     // returns an object of data
         return {
-            MphOver: '',          // value is set by the select list
+            mphOver: '',          // value is set by the select list
             results: [],       // all 109 data itmes retrieved from the json file
-            tickets_items: [],    // menu items filtered by meal
+            mph_items: [],    // menu items filtered by meal
             time_loaded: '',
             showTable: false
         }
@@ -74,10 +74,10 @@ let app = Vue.createApp({
             const response = await fetch('tickets1.json')
             this.results = await response.json()
        },
-       getMphOver() {
+       get() {
            this.showTable = true
            // filter data form given meal
-           this.tickets_items = this.results.filter((item) => item.actual_speed >= item.posted_speed + 25 == this.ticket);
+           this.mph_items = this.results.filter((item) => ((item.actual_speed >= item.posted_speed + 25)) == this.ticket);
        }
    },
   
