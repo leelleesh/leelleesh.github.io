@@ -66,8 +66,6 @@ let app = Vue.createApp({
         }
         },
    created() {      // section executes as page loads
-        var d = new Date()
-        this.time_loaded = d.toLocaleTimeString()
   
         this.getData()  // call method to load json data as page loads
    },
