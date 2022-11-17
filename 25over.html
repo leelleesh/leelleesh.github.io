@@ -45,10 +45,10 @@
   
   
   <div v-show="showTable">
-    <h3>Tickets 25mph Over: {{ticket}}</h3>
+    <h3>Tickets: {{MPHOver}}</h3>
     <table class='table'>
     <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th> <th> MPH Over</th> <th> Violator Sex</th></tr>
-     <tr v-for="tickets_items"> 
+     <tr v-for="tickets1_items"> 
     <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td>{{ticket.posted_speed}}<td> {{ticket.actual_speed - ticket.posted_speed}}</td><td> {{ticket.violator_sex}}</td></td>
   </tr>
   </table>
