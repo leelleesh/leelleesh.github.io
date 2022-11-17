@@ -26,26 +26,27 @@
 
 </nav>    <!-- end nav-bar -->
     
-<div id="ticketApp">
-
-     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
-          
-          <table class="table table-bordered table-striped">
-              <tr>
-                  <th>Ticket ID</th>
-                  <th>Time</th>
-                  <th>Posted Speed</th>
-                  <th>MPH Over</th>
-                  <th>Violator Sex</th>
-              </tr>
-              <tr v-for = "ticket in tickets">
-                  <td>{{ticket.tid}}</td>
-                  <td>{{ticket.stop_time}}</td>
-                  <td>{{ticket.posted_speed}}</td>
-                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
-                  <td>{{ticket.violator_sex}}</td>
-              </tr>
-         </table>
+<div class="container" id='main'>
+  <h2>Select a Menu</h2>
+       <div style='padding: 5px;'> 
+  <select  v-on:change="getMenu()" v-model='meal'>
+  <option value='MPHOver'>25 mph (or more) Over</option>
+  </select> Tickets
+  </div>
+  
+  
+  <div v-show="showTable">
+    <h3>Tickets 25mph Over: {{ticket}}</h3>
+    <table class='table'>
+    <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th> <th> MPH Over</th> <th> Violator Sex</th></tr>
+     <tr v-for="dish in menu_items"> 
+    <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td>{{ticket.posted_speed}}<td> {{ticket.actual_speed - ticket.posted_speed}}</td><td> {{ticket.violator_sex}}</td></td>
+  </tr>
+  </table>
+  
+  
+  </div>
+       
   
 </div>   <!-- end gpaApp -->
 </div>   <!-- end class= 'container' -->
