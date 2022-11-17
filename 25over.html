@@ -31,40 +31,29 @@
 </nav>    <!-- end nav-bar -->
 	
 	
-  <div class="container" id='main'>
-  <h2>Speeders (25mph and over)</h2>
-       <div style='padding: 5px;'> 
-  <select  v-on:change="getMphOver()" v-model='tickets'>
-  <option value='MphOver'>25mph and over</option>
-  <option value='all'>All tickets</option>
-  </select> Select an Option
-  </div>
-  
-  
-  <div v-show="showTable">
-    <h3>Tickets: {{tickets}}</h3>
-    <table class='table'>
-    <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th><th>Mph Over</th><th>Violator Sex</th></tr>
-     <tr v-for="actual_speed >= posted_speed in tickets"> 
-    <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td> {{ticket.posted_speed}}</td><td> {{ticket.actual_speed - ticket.posted_speed}}</td><td>{{ticket.violator_sex}}</td>
-  </tr>
-  </table>
-  
-  
-  </div>
-  
+ <div id="ticketApp">
+     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+          
+          <table class="table table-bordered table-striped">
+              <tr>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
+              </tr>
+              <tr v-for = "ticket in tickets">
+                  <td>{{ticket.tid}}</td>
+                  <td>{{ticket.stop_time}}</td>
+                  <td>{{ticket.posted_speed}}</td>
+                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+                  <td>{{ticket.violator_sex}}</td>
+              </tr>
+</table>
+	 </div>   <!-- end gpaApp -->
+	 </div>   <!-- end class= 'container' -->
+	 
  
-  
-  </div>   <!-- end class='container'   -->
-  
-  <script src = 'app.js'></script>   <!-- vue.js application code -->
-      
-
-</body>
-  
-</div>   <!-- end gpaApp -->
-</div>   <!-- end class= 'container' -->
-
 <script>
 let app = Vue.createApp({
    data() {     // returns an object of data
