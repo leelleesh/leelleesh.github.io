@@ -36,7 +36,7 @@
                   <th>MPH Over</th>
                   <th>Violator Sex</th>
               </tr>
-              <tr v-for = "ticket in tickets">
+              <tr v-for = "MPH in tickets">
                   <td>{{ticket.tid}}</td>
                   <td>{{ticket.stop_time}}</td>
                   <td>{{ticket.posted_speed}}</td>
@@ -52,7 +52,7 @@
 <script>let app = Vue.createApp({
    data() {     // returns an object of data
         return {
-            tickets1: '',          // value is set by the select list
+            ticket: '',          // value is set by the select list
             results: [],       // all 109 data itmes retrieved from the json file
             ticket_items: [],    // menu items filtered by meal
             time_loaded: '',
@@ -73,7 +73,7 @@
        getTickets() {
            this.showTable = true
            // filter data form given meal
-           this.items = this.results.filter((item) => item.MPH_Over == this.ticket);
+           this.tickets = this.results.filter((item) => item.MPH_Over == this.ticket);
        }
    },
   
