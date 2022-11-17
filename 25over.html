@@ -19,80 +19,30 @@
   </head>
   
 <body>
+<div id="ticketApp">
 
-  <div class="container">
-<nav class="navbar navbar-inverse">
-
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Our Website</a>
-    </div>
-    <div>
-       <ul class="nav navbar-nav">
-           <li><a href="index.html">All Tickets</a></li>
-           <li class="active"><a href="25over.html">25mph or move over</a></li>
-       </ul>
-    </div>
-
-</nav>    <!-- end nav-bar -->
-    
-<div class="container" id='main'>
-  <h2>Select a Menu</h2>
-       <div style='padding: 5px;'> 
-  <select  v-on:click="getMPHOver()" v-model='tickets'>
-  <option value='MPHOver'>25 mph (or more) Over</option>
-  </select> Tickets
-  </div>
-  
-  
-  <div v-show="showTable">
-    <h3>Tickets: {{MPHOver}}</h3>
-    <table class='table'>
-    <tr> <th>Ticket ID</th> <th>Time</th><th>Posted Speed</th> <th> MPH Over</th> <th> Violator Sex</th></tr>
-     <tr v-for="tickets for 25mph over"> 
-    <td> {{ticket.tid}}</td><td>{{ticket.stop_time}}</td><td>{{ticket.posted_speed}}<td> {{ticket.actual_speed - ticket.posted_speed}}</td><td> {{ticket.violator_sex}}</td></td>
-  </tr>
-  </table>
-  
-  
-  </div>
-       
+     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+          
+          <table class="table table-bordered table-striped">
+              <tr>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
+              </tr>
+              <tr v-for = "ticket in tickets">
+                  <td>{{ticket.tid}}</td>
+                  <td>{{ticket.stop_time}}</td>
+                  <td>{{ticket.posted_speed}}</td>
+                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+                  <td>{{ticket.violator_sex}}</td>
+              </tr>
+         </table>
   
 </div>   <!-- end gpaApp -->
 </div>   <!-- end class= 'container' -->
 
-	<script>
-let app = Vue.createApp({
-   data() {     // returns an object of data
-        return {
-            mphOver: '',          // value is set by the select list
-            results: [],       // all 109 data itmes retrieved from the json file
-            ticket_items: [],    // menu items filtered by meal
-            time_loaded: '',
-            showTable: false
-        }
-        },
-   created() {      // section executes as page loads
-        var d = new Date()
-        this.time_loaded = d.toLocaleTimeString()
-  
-        this.getData()  // call method to load json data as page loads
-   },
-   methods: {    // an object of functions (methods)
-      async getData() {
-            const response = await fetch('tickets1.json')
-            this.results = await response.json()
-       },
-       getMPHOver() {
-           this.showTable = true
-           // filter data form given meal
-           this.items = this.results.filter(((item) => (item.actual_speed - item.posted_speed)) == this.ticket);
-       }
-   },
-  
-})
+</nav>    <!-- end nav-bar -->
+    
 
-  
-  <script src = 'app.js'></script>   <!-- vue.js application code -->
-      
-
-</body></html>
