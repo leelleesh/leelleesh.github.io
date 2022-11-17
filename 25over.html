@@ -73,12 +73,12 @@ let app = Vue.createApp({
        getTickets() {
            this.showTable = true
            // filter data form given meal
-           this.ticket_items = this.results.filter((item) => item.actual_speed == this.ticket);
+           this.items = this.results.filter((item) => item.MPH_Over == this.ticket);
        }
    },
   
 })
 app.mount('#ticketApp')   //in which div to mount the vue app
 	
-	<script/>
-      </body></html>
+      </body>
+	</html>
