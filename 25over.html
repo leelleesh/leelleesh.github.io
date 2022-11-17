@@ -62,13 +62,12 @@ let app = Vue.createApp({
                 }
             },
    created() {      // section executes as page loads
-  
         this.getData()  // call method to load json data as page loads
    },
    methods: {    // an object of functions (methods)
       async getData() {
             const response = await fetch('tickets1.json')
-            this.results = await response.json()
+            this.tickets = await response.json()
        },
        get() {
            this.showTable = true
