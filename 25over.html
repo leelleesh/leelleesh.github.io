@@ -36,7 +36,7 @@
                   <th>Ticket ID</th>
                   <th>Time</th>
                   <th>Posted Speed</th>
-                  <th>MPH Over</th>
+                  <th>Mph Over</th>
                   <th>Violator Sex</th>
               </tr>
               <tr v-for = "ticket in tickets">
@@ -55,7 +55,7 @@
        let app = Vue.createApp({
             data() {     // returns an object of data
                 return {
-                    tickets: [],           // array to hold student data
+                    tickets: [],           // array to hold ticket data
                 }
             },
             created() {      // section executes as page loads
@@ -64,10 +64,15 @@
             methods: {    // ajax request
                 async getData() {
                     const response = await fetch('tickets1.json')
-                    this.tickets = await response.json()
-                    //tickets = data.filter( (item) => item.major == majSelect );     
+                    this.tickets = await response.json()    
                 },
-            }
+		    getByMphOver() {
+           this.showTable = true
+           // filter data form given meal
+           this.tickets_items = this.results.filter((item) => item.Mph_Over == this.ticket);
+       }
+   },
+  
           })
       
       app.mount('#ticketApp')   //in which div to mount the vue app
