@@ -56,15 +56,11 @@
  
 <script>
 let app = Vue.createApp({
-   data() {     // returns an object of data
-        return {
-            mphOver: '',         
-            results: [],       // all data itmes retrieved from the json file
-           actual_speed_items: [],    // items filtered by mph
-            time_loaded: '',
-            showTable: false
-        }
-        },
+            data() {     // returns an object of data
+                return {
+                    tickets: [],           // array to hold student data
+                }
+            },
    created() {      // section executes as page loads
   
         this.getData()  // call method to load json data as page loads
