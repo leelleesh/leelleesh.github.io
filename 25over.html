@@ -46,10 +46,15 @@
   <div v-show="showTable">
     <h3>Tickets: {{tickets}}</h3>
     <table class='table'>
-    <tr> <th>Item Name</th> <th>Category</th><th>Portion</th></tr>
+    <tr> <th>ID</th> <th>Category</th><th>Portion</th></tr>
      <tr v-for="Mph_Over in tickets_items"> 
-    <td> {{ticket.name}}</td><td>{{ticket.category}}</td><td>{{ticket.portion}}</td>
-  </tr>
+   <td>{{ticket.tid}}</td>
+                  <td>{{ticket.stop_time}}</td>
+                  <td>{{ticket.posted_speed}}</td>
+                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+                  <td>{{ticket.violator_sex}}</td>
+              </tr>
+
   </table>
   
   
