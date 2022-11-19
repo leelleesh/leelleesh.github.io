@@ -77,7 +77,8 @@
        getByTickets() {
            this.showTable = true
            // filter data form given meal
-           this.tickets_items = this.results.filter( (item) => item."MPH Over" = 25< == this.tickets);
+	       var MPH_Over = ticket.actual_speed - ticket.posted_speed
+           this.tickets_items = this.results.filter( (item) => item.MPH_Over = >25 == this.tickets);
        }
    },
   
