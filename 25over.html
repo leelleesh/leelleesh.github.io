@@ -33,7 +33,7 @@
 	
 <body>
   
-  <div class="container" id='main'>
+  <div class="container" id='ticketApp'>
   <h2>Select a Menu</h2>
   <p>Page Loaded: {{time_loaded}}</p>
        <div style='padding: 5px;'> 
@@ -77,7 +77,7 @@
             },
    	created() {      // section executes as page loads
 	var d = new Date()
-	time_loaded = d.toLocaleTimeString()
+	var time_loaded = d.toLocaleTimeString()
 	
         this.getData()  // call method to load json data as page loads
    	},
@@ -88,9 +88,8 @@
        }, 
        getTickets() {
            this.showTable = true
-           // filter data form given meal
-	       var MPH_Over = ticket.actual_speed - ticket.posted_speed >= 25
-           this.tickets_items = this.results.filter( (item) => item.MPH_Over = <"25" == this.tickets);
+           // filter data form given
+           this.tickets_items = this.results.filter( (item) => item.MPH_Over = "25" == this.tickets);
        }
    },
   
