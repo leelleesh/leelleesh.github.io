@@ -46,7 +46,7 @@
   <div v-show="showTable">
     <h3>Tickets: {{tickets}}</h3>
     <table class='table'>
-    <tr> <th>ID</th> <th>Category</th><th>Portion</th></tr>
+    <tr> <th>ID</th><th>Time</th><th>Posted Speed</th><th>MPH Over</th><th>Violator Sex</th></tr>
      <tr v-for="ticket in tickets_items"> 
    <td>{{ticket.tid}}</td>
                   <td>{{ticket.stop_time}}</td>
