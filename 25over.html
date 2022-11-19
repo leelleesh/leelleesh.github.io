@@ -31,27 +31,34 @@
 </nav>    <!-- end nav-bar -->
 	
 	
- <div id="ticketApp">
-     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
-          <p>Page Loaded: {{time_loaded}}</p>
-          <table class="table table-bordered table-striped">
-              <tr>
-                  <th>Ticket ID</th>
-                  <th>Time</th>
-                  <th>Posted Speed</th>
-                  <th>MPH Over</th>
-                  <th>Violator Sex</th>
-              </tr>
-              <tr v-for = "ticket in tickets">
-                  <td>{{ticket.tid}}</td>
-                  <td>{{ticket.stop_time}}</td>
-                  <td>{{ticket.posted_speed}}</td>
-                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
-                  <td>{{ticket.violator_sex}}</td>
-              </tr>
-</table>
-	 </div>   <!-- end gpaApp -->
-	 </div>   <!-- end class= 'container' --> 
+<body>
+  
+  <div class="container" id='main'>
+  <h2>Select a Menu</h2>
+  <p>Page Loaded: {{time_loaded}}</p>
+       <div style='padding: 5px;'> 
+  <select  v-on:change="getTickets()" v-model='tickets'>
+  <option value='Mph_Over(25)'>MPH over 25</option>
+  </select> Select a Menu
+  </div>
+  
+  
+  <div v-show="showTable">
+    <h3>Tickets: {{tickets}}</h3>
+    <table class='table'>
+    <tr> <th>Item Name</th> <th>Category</th><th>Portion</th></tr>
+     <tr v-for="Mph_Over in tickets_items"> 
+    <td> {{ticket.name}}</td><td>{{ticket.category}}</td><td>{{ticket.portion}}</td>
+  </tr>
+  </table>
+  
+  
+  </div> <!-- end class='container'   -->
+  
+  <script src = 'app.js'></script>   <!-- vue.js application code -->
+      
+
+</body>
  
 <script>
 	let app = Vue.createApp({
@@ -77,7 +84,7 @@
        getByTickets() {
            this.showTable = true
            // filter data form given meal
-	       var MPH_Over = ticket.actual_speed - ticket.posted_speed
+	       var MPH_Over = ticket.actual_speed - ticket.posted_speed >= 25
            this.tickets_items = this.results.filter( (item) => item.MPH_Over = <"25" == this.tickets);
        }
    },
