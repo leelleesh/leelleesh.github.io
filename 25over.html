@@ -77,7 +77,7 @@
             },
    	created() {      // section executes as page loads
 	var d = new Date()
-	 time_loaded = d.toLocaleTimeString()
+	 this.time_loaded = d.toLocaleTimeString()
 	
         this.getData()  // call method to load json data as page loads
    	},
