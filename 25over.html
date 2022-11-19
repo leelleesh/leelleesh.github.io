@@ -58,9 +58,15 @@
             data() {     // returns an object of data
                 return {
                     tickets: [],           // array to hold student data
+		    tickets_items: [],
+		    time_loaded: '',
+		    showTable: false
                 }
             },
    	created() {      // section executes as page loads
+	var d = new Date()
+	this.time_loaded = d.toLocaleTimeString()
+	
         this.getData()  // call method to load json data as page loads
    	},
    	methods: {    // an object of functions (methods)
