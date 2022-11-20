@@ -59,8 +59,7 @@
            const response = await fetch('tickets1.json')
            citations = await response.json()
            this.tickets = citations.filter( (item) => item.actual_speed > item.posted_speed + 25);    
-           console.log(this.tickets)
-      },   
+           console.log(this.tickets)   
                 },
             }
           })
