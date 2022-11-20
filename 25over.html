@@ -3,101 +3,67 @@
 <head>
 <title>speeding tickets</title>
 		<script src="https://unpkg.com/vue@next"></script>
-<link rel="stylesheet" 
- href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script 
-  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-</script>
-<script 
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js">
-</script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   
-
 </head>
 <body>
-  <div class="container">
+<div class="container">
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Our Website</a>
     </div>
     <div>
        <ul class="nav navbar-nav">
-           <li><a href="index.html">All Tickets</a></li>
-	       <li class="active"><a href="25over.html">25mph (or more) over</a></li>
+           <li class="active"><a href="index.html">All Tickets</a></li>
+	       <li><a href="25over.html">25mph or move over</a></li>
        </ul>
     </div>
 
 </nav>    <!-- end nav-bar -->
-	
-	
-<body>
-  
-  <div class="container" id='ticketApp'>
-  <h2>Select a Menu</h2>
-  <p>Page Loaded: {{time_loaded}}</p>
-       <div style='padding: 5px;'> 
-  <select  v-on:change="getTickets()" v-model='tickets'>
-  <option value='Mph_Over'>MPH over 25</option>
-  </select> Select a Menu
-  </div>
-  
-  
-  <div v-show="showTable">
-    <h3>Tickets: {{tickets}}</h3>
-    <table class='table'>
-    <tr> <th>ID</th><th>Time</th><th>Posted Speed</th><th>MPH Over</th><th>Violator Sex</th></tr>
-     <tr v-for="ticket in tickets_items"> 
-   <td>{{ticket.tid}}</td>
+<div id="ticketApp">
+     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+          
+          <table class="table table-bordered table-striped">
+              <tr>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
+              </tr>
+              <tr v-for = "ticket in tickets">
+                  <td>{{ticket.tid}}</td>
                   <td>{{ticket.stop_time}}</td>
                   <td>{{ticket.posted_speed}}</td>
                   <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
                   <td>{{ticket.violator_sex}}</td>
               </tr>
-
-  </table>
+         </table>
   
-  
-  </div> <!-- end class='container'   -->
-  
-  <script src = 'app.js'></script>   <!-- vue.js application code -->
-      
-
-</body>
- 
+</div>   <!-- end gpaApp -->
+</div>   <!-- end class= 'container' -->
 <script>
-	let app = Vue.createApp({
+       let app = Vue.createApp({
             data() {     // returns an object of data
                 return {
                     tickets: [],           // array to hold student data
-		    tickets_items: [],
-		    time_loaded: '',
-		    showTable: false
                 }
             },
-   	created() {      // section executes as page loads
-	var d = new Date()
-	 this.time_loaded = d.toLocaleTimeString()
-	
-        this.getData()  // call method to load json data as page loads
-   	},
-   	methods: {    // an object of functions (methods)
-     	   async getData() {
-            const response = await fetch('tickets1.json')
-            this.tickets = await response.json()
-       }, 
-       getTickets() {
-           this.showTable = true
-           // filter data form given
-           this.tickets_items = this.results.filter( (item) => item.ticket.MPHOver == this.tickets);
-       }
-   },
-  
-})
-
-   app.mount('#ticketApp')   //in which div to mount the vue app
-   
-  </script>   
-   
-
+            created() {      // section executes as page loads
+                this.getData()  // load json data as page loads
+            },
+            methods: {    // ajax request
+                async getData() {
+                    const response = await fetch('tickets1.json')
+                    this.tickets = await response.json()
+                    //tickets = data.filter( (item) => item.major == majSelect );     
+                },
+            }
+          })
+      
+      app.mount('#ticketApp')   //in which div to mount the vue app
+		  
+</script>
 </body></html>
